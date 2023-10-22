@@ -1,3 +1,7 @@
+body {
+  background-color: black;
+}
+
 td {
   border: 2px solid #333;
   height: 100px;
@@ -7,6 +11,7 @@ td {
   font-family: 'Courier New', Courier, monospace, sans-serif;
   font-size: 70px;
   cursor: pointer;
+  color: white;
 }
 
 table {
@@ -22,6 +27,7 @@ table {
   text-align: center;
   margin-top: 10px;
   font-size: 80px;
+  color: white;
 }
 
 table tr:first-child td {
@@ -53,4 +59,19 @@ table tr td:last-child {
   border-radius: 5px;
   color: white;
   font-size: 2em;
+}
+
+button {
+  margin-top: 700px;
+  margin-left: 900px;
+  border-radius: 20px;
+  width: 100px;
+  height: 50px;
+  cursor: pointer;
+  /* padding: 20px; */
+}
+
+button:hover {
+  background-color: black;
+  color: white;
 }

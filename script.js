@@ -26,6 +26,10 @@ function startGame() {
 }
 
 function turnClick(square) {
+  if (typeof origBoard[square.target.id] == 'number') {
+    turn(square.target.id, huPlayer);
+    if (!checkTie()) turn(bestSpot(), aiPlayer);
+  }
   turn(square.target.id, huPlayer);
 }
 
@@ -53,6 +57,7 @@ function checkWin(board, player) {
 }
 
 function gameOver(gameWon) {
+  // a function that checks if the player hit the winning combos
   for (let index of winCombos[gameWon.index]) {
     document.getElementById(index).style.backgroundColor =
       gameWon.player == huPlayer ? 'blue' : 'red';
@@ -60,4 +65,31 @@ function gameOver(gameWon) {
   for (var i = 0; i < cells.length; i++) {
     cells[i].removeEventListener('click', turnClick, false);
   }
+  declareWinner(gameWon.player == huPlayer ? 'You win!' : 'You lose!');
+}
+
+function declareWinner(who) {
+  document.querySelector('.endgame').style.display = 'block';
+  document.querySelector('.endgame .text').innerText = who;
+}
+
+function emptySquares() {
+  return origBoard.filter((e) => typeof e == 'number');
+}
+
+function bestSpot() {
+  // a function that will find an empty square and find the FIRST empty square
+  return emptySquares()[0];
+}
+
+function checkTie() {
+  if (emptySquares().length == 0) {
+    for (let i = 0; i < cells.length; i++) {
+      cells[i].style.backgroundColor = 'green';
+      cells[i].removeEventListener('click', turnClick, false);
+    }
+    declareWinner('Tie Game!');
+    return true;
+  }
+  return false;
 }
