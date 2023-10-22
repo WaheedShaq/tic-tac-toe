@@ -79,7 +79,7 @@ function emptySquares() {
 
 function bestSpot() {
   // a function that will find an empty square and find the FIRST empty square
-  return emptySquares()[0];
+  return emptySquares()[Math.floor(Math.random() * 8)];
 }
 
 function checkTie() {
